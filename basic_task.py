@@ -5,7 +5,8 @@ from torch.utils.data import Dataset, DataLoader
 class GSM8KDataset(Dataset):
     def __init__(self, path):
         # Load data and preprocess
-        self.data = ... # Load GSM8K from 'path'
+        splits = {'train': 'main/train-00000-of-00001.parquet', 'test': 'main/test-00000-of-00001.parquet'}
+        self.data = pd.read_parquet("hf://datasets/openai/gsm8k/" + splits["train"])  # Load GSM8K from 'pandas'
     def __len__(self):
         return len(self.data)
     def __getitem__(self, idx):
